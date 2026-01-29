@@ -1,6 +1,21 @@
-"""AI logic for generating email content."""
+from anthropic import Anthropic
+from config import ANTHROPIC_API_KEY
 
-def generate_email(prompt: str) -> str:
-    """Generate an email body based on the provided prompt."""
-    # TODO: Replace stub with real LLM integration.
-    return f"Draft email based on prompt: {prompt}"
+client = Anthropic(api_key=ANTHROPIC_API_KEY)
+
+
+def generate_email(prompt: str):
+    """Generate an email body with Claude."""
+    response = client.messages.create(
+        model="claude-3-5-haiku-20241022",
+        max_tokens=400,
+        system="You are a professional email assistant. Keep responses concise and polite.",
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    content = response.content[0].text if response.content else ""
+
+    return {
+        "subject": "AI Generated Email",
+        "body": content,
+    }

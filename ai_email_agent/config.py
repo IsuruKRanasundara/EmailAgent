@@ -1,9 +1,9 @@
-"""Configuration placeholders for API keys and email settings."""
+import os
+from dotenv import load_dotenv
 
-# TODO: Load these from environment variables or a secrets manager.
-SMTP_HOST = "smtp.example.com"
+load_dotenv()
+ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 587
-SMTP_USERNAME = "user@example.com"
-SMTP_PASSWORD = "changeme"
-FROM_ADDRESS = "noreply@example.com"
-OPENAI_API_KEY = "changeme"

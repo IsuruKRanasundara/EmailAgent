@@ -1,2 +1,2 @@
-# Add project dependencies here
-openai
+anthropic
+python-dotenv
